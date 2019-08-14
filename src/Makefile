@@ -10,16 +10,16 @@ ifdef FORKWORK
 else
 	ln -s ForkNo.ml ForkMaybe.ml
 endif
-	ocamlbuild -use-ocamlfind $(OCAMLBUILDFLAGS) PhyloCSF.native
+	ocamlbuild -cflag '-unsafe-string' -use-ocamlfind $(OCAMLBUILDFLAGS) PhyloCSF.native
 
 test: testexe
 	./test.native -verbose
 
 testexe: all
-	ocamlbuild -use-ocamlfind $(OCAMLBUILDFLAGS) testSim.native test.native
+	ocamlbuild -cflag '-unsafe-string' -use-ocamlfind $(OCAMLBUILDFLAGS) testSim.native test.native
 
 clean:
 	rm -f *~
-	ocamlbuild -clean
+	ocamlbuild -cflag '-unsafe-string' -clean
 
 .PHONY: all test testexe clean

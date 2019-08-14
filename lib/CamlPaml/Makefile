@@ -1,10 +1,10 @@
 LIBNAME = CamlPaml
 
 lib:
-	ocamlbuild -use-ocamlfind ${LIBNAME}.cma ${LIBNAME}.cmxa
+	ocamlbuild -cflag '-unsafe-string' -use-ocamlfind ${LIBNAME}.cma ${LIBNAME}.cmxa
 
 test:
-	ocamlbuild -use-ocamlfind test.native
+	ocamlbuild -cflag '-unsafe-string' -use-ocamlfind test.native
 	_build/test.native
 
 
@@ -20,7 +20,7 @@ reinstall:
 
 clean:
 	rm -f *~
-	ocamlbuild -clean
+	ocamlbuild -cflag '-unsafe-string' -clean
 
 doc:
-	ocamlbuild -use-ocamlfind ${LIBNAME}.docdir/index.html
+	ocamlbuild -cflag '-unsafe-string' -use-ocamlfind ${LIBNAME}.docdir/index.html
